@@ -5,38 +5,38 @@ import {
   Button,
   Group,
   Input,
-  Tooltip,
+  // Tooltip,
   CopyButton,
 } from "@mantine/core";
-import { GithubIcon } from "@mantine/ds";
-import { useEffect, useState } from "react";
-import { IconBabyCarriage, IconAlertCircle } from "@tabler/icons";
-import { Notification } from "@mantine/core";
-import { IconCheck, IconX } from "@tabler/icons";
+// import { GithubIcon } from "@mantine/ds";
+import { useState } from "react";
+import { IconBabyCarriage} from "@tabler/icons";
+// import { Notification } from "@mantine/core";
+// import { IconCheck } from "@tabler/icons";
 import { FooterSocial } from "./FooterSocial";
 const BREAKPOINT = "@media (max-width: 755px)";
 
-function Message(child: any) {
-  // the alert is displayed by default
-  const [alert, setAlert] = useState(child);
+// function Message(child: any) {
+//   // the alert is displayed by default
+//   const [alert, setAlert] = useState(child);
 
-  useEffect(() => {
-    // when the component is mounted, the alert is displayed for 3 seconds
-    setTimeout(() => {
-      setAlert(false);
-    }, 3000);
-  }, []);
+//   useEffect(() => {
+//     // when the component is mounted, the alert is displayed for 3 seconds
+//     setTimeout(() => {
+//       setAlert(false);
+//     }, 3000);
+//   }, []);
 
-  return (
-    alert && (
-      <>
-        <Notification icon={<IconCheck size={18} />} color="teal" title="Yaay!">
-          Babylink is copied to the clipboard.
-        </Notification>
-      </>
-    )
-  );
-}
+//   return (
+//     alert && (
+//       <>
+//         <Notification icon={<IconCheck size={18} />} color="teal" title="Yaay!">
+//           Babylink is copied to the clipboard.
+//         </Notification>
+//       </>
+//     )
+//   );
+// }
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -106,16 +106,16 @@ const useStyles = createStyles((theme) => ({
 export function HeroTitle() {
   const { classes } = useStyles();
 
-  let [ft, setft] = useState(false);
+  let [ft, ] = useState(false);
   const [name, setName] = useState("");
-  let copied = false;
-  let onCopy = () => {
-    copied = true;
-    setTimeout(function () {
-      copied = false;
-    }, 1000);
-  };
-  var result = null;
+  // let copied = false;
+  // let onCopy = () => {
+  //   copied = true;
+  //   setTimeout(function () {
+  //     copied = false;
+  //   }, 1000);
+  // };
+  // var result = null;
   async function updateGoly(data: any) {
     console.log(ft);
     const json = {
@@ -123,7 +123,7 @@ export function HeroTitle() {
       goly: data.goly,
       random: data.random,
     };
-    const res = await fetch("http://babyy.link/goly", {
+    const res = await fetch("https://goserver-306x.onrender.com/goly", {
       method: "POST",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
@@ -133,7 +133,7 @@ export function HeroTitle() {
     });
     const json1 = await res.json();
     console.log("http://localhost:8000/r/" + json1.goly);
-    navigator.clipboard.writeText("http://babyy.link/r/" + json1.goly);
+    navigator.clipboard.writeText("https://babyy.link/r/" + json1.goly);
   }
 
   let data = {
