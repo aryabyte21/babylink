@@ -4,9 +4,10 @@ import { useState } from "react";
 import { HeaderAction } from "./HeaderAction";
 import { HeroTitle } from "./HeroTitle";
 import { CustomFonts } from "./CustomFonts";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
-   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
    const toggleColorScheme = (value?: ColorScheme) =>
      setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
  
@@ -35,11 +36,8 @@ export default function App() {
         withNormalizeCSS
       >
         <CustomFonts />
-        <HeaderAction
-          links={[
-           
-          ]}
-        />
+        <HeaderAction links={[]} />
+        <Toaster />
         <HeroTitle />
         <br />
       </MantineProvider>

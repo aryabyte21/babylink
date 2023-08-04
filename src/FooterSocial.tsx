@@ -2,7 +2,8 @@ import { createStyles, Container, Group, ActionIcon } from "@mantine/core";
 import {
   IconBrandTwitter,
   IconBrandYoutube,
-  IconBrandInstagram,
+  IconBrandGithub,
+  IconAt
 } from "@tabler/icons";
 import { MantineLogo } from "@mantine/ds";
 
@@ -51,9 +52,14 @@ export function FooterSocial() {
               <IconBrandYoutube size={18} stroke={1.5} />
             </ActionIcon>
           </a>
-          <a href="https://www.instagram.com/aryabyte/">
+          <a href="https://github.com/aryabyte21">
             <ActionIcon size="lg">
-              <IconBrandInstagram size={18} stroke={1.5} />
+              <IconBrandGithub size={18} stroke={1.5} />
+            </ActionIcon>
+          </a>
+          <a href="https://aryafolio.vercel.app/">
+            <ActionIcon size="lg">
+              <IconAt size={18} stroke={1.5} />
             </ActionIcon>
           </a>
         </Group>
