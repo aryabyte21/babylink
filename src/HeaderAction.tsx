@@ -7,14 +7,11 @@ import {
   Burger,
   ActionIcon,
   useMantineColorScheme,
-  ColorScheme,
   Title,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { MantineLogo } from "@mantine/ds";
 import { IconSun, IconMoonStars } from "@tabler/icons";
-import { useState } from "react";
-import { IconBabyCarriage, IconAlertCircle } from "@tabler/icons";
+import { IconBabyCarriage } from "@tabler/icons";
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({

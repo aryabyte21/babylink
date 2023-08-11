@@ -6,39 +6,16 @@ import {
   Group,
   Input,
   Loader,
-  // Tooltip,
   CopyButton,
 } from "@mantine/core";
-// import { GithubIcon } from "@mantine/ds";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconBabyCarriage } from "@tabler/icons";
-// import { Notification } from "@mantine/core";
-// import { IconCheck } from "@tabler/icons";
+
 import { FooterSocial } from "./FooterSocial";
 import toast from "react-hot-toast";
 const BREAKPOINT = "@media (max-width: 755px)";
 
-// function Message(child: any) {
-//   // the alert is displayed by default
-//   const [alert, setAlert] = useState(child);
 
-//   useEffect(() => {
-//     // when the component is mounted, the alert is displayed for 3 seconds
-//     setTimeout(() => {
-//       setAlert(false);
-//     }, 3000);
-//   }, []);
-
-//   return (
-//     alert && (
-//       <>
-//         <Notification icon={<IconCheck size={18} />} color="teal" title="Yaay!">
-//           Babylink is copied to the clipboard.
-//         </Notification>
-//       </>
-//     )
-//   );
-// }
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -133,9 +110,20 @@ export function HeroTitle() {
       const json1 = await res.json();
       const generatedLink = "https://babyy.link/r/" + json1.goly;
 
-      navigator.clipboard.writeText(generatedLink).then(() => {
-        toast.success("Link copied to clipboard!");
-      });
+     try {
+       const clipboardPermission = await navigator.permissions.query({
+         name: "clipboard-write",
+       } as any);
+       if (clipboardPermission.state === "granted") {
+         navigator.clipboard.writeText(generatedLink).then(() => {
+           toast.success("Link copied to clipboard!");
+         });
+       } else {
+         throw new Error("Clipboard permissions not granted");
+       }
+     } catch (error) {
+       toast.error("Cannot access clipboard. Please copy the link manually.");
+     }
     } catch (error) {
       toast.error("Something went wrong, please try again.");
     } finally {
@@ -148,6 +136,11 @@ export function HeroTitle() {
     goly: "",
     random: true,
   };
+
+  useEffect(() => {
+    data.redirect = name;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
 
   return (
     <div>
@@ -194,12 +187,11 @@ export function HeroTitle() {
                 {isLoading
                   ? "Generating"
                   : copied
-                  ? "Copied url"
+                  ? "Copied url" 
                   : "Copy babylink"}
               </Button>
             )}
           </CopyButton>
-          {(data.redirect = name)}
         </Group>
       </Container>
       <FooterSocial />
