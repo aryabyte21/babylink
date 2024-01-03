@@ -131,7 +131,8 @@ export function HeroTitle() {
       }
 
       const json1 = await res.json();
-      const generatedLink = "https://babyy.link/r/" + json1.goly;
+      const generatedLink =
+        "https://goserver-306x.onrender.com/r/" + json1.goly;
 
       navigator.clipboard.writeText(generatedLink).then(() => {
         toast.success("Link copied to clipboard!");
