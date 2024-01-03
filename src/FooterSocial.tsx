@@ -5,7 +5,6 @@ import {
   IconBrandGithub,
   IconAt
 } from "@tabler/icons";
-import { MantineLogo } from "@mantine/ds";
 
 const useStyles = createStyles((theme) => ({
   footer: {

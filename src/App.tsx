@@ -1,5 +1,4 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider, Text } from "@mantine/core";
-import { isAbsolute } from "path";
+import { ColorScheme, ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import { useState } from "react";
 import { HeaderAction } from "./HeaderAction";
 import { HeroTitle } from "./HeroTitle";
