@@ -6,39 +6,13 @@ import {
   Group,
   Input,
   Loader,
-  // Tooltip,
-  CopyButton,
 } from "@mantine/core";
-// import { GithubIcon } from "@mantine/ds";
 import { useState } from "react";
 import { IconBabyCarriage } from "@tabler/icons";
-// import { Notification } from "@mantine/core";
-// import { IconCheck } from "@tabler/icons";
 import { FooterSocial } from "./FooterSocial";
 import toast from "react-hot-toast";
+
 const BREAKPOINT = "@media (max-width: 755px)";
-
-// function Message(child: any) {
-//   // the alert is displayed by default
-//   const [alert, setAlert] = useState(child);
-
-//   useEffect(() => {
-//     // when the component is mounted, the alert is displayed for 3 seconds
-//     setTimeout(() => {
-//       setAlert(false);
-//     }, 3000);
-//   }, []);
-
-//   return (
-//     alert && (
-//       <>
-//         <Notification icon={<IconCheck size={18} />} color="teal" title="Yaay!">
-//           Babylink is copied to the clipboard.
-//         </Notification>
-//       </>
-//     )
-//   );
-// }
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -110,29 +84,25 @@ export function HeroTitle() {
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
 
-  async function updateGoly(data: any) {
+  async function updateGoly(originalUrl: string) {
     setIsLoading(true);
-    const json = {
-      redirect: data.redirect,
-      goly: data.goly,
-      random: data.random,
-    };
 
     try {
-      const res = await fetch("https://goserver-306x.onrender.com/goly", {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(json),
-      });
+      const res = await fetch(
+        "https://ep0glga6tc.execute-api.us-west-2.amazonaws.com/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: originalUrl,
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const json1 = await res.json();
-      const generatedLink =
-        "https://goserver-306x.onrender.com/r/" + json1.goly;
+      const json = await res.json();
+      const generatedLink = `https://ep0glga6tc.execute-api.us-west-2.amazonaws.com/${json.short_code}`;
 
       navigator.clipboard.writeText(generatedLink).then(() => {
         toast.success("Link copied to clipboard!");
@@ -144,17 +114,11 @@ export function HeroTitle() {
     }
   }
 
-  let data = {
-    redirect: "",
-    goly: "",
-    random: true,
-  };
-
   return (
     <div>
       <Container size={700} className={classes.inner}>
         <h1 className={classes.title}>
-          Your link {" "}
+          Your link{" "}
           <Text
             component="span"
             variant="gradient"
@@ -177,30 +141,21 @@ export function HeroTitle() {
             id="redirect"
             size="lg"
             value={name}
-            onChange={(e: any) => setName(e.target.value)}
+            onChange={(e:any) => setName(e.target.value)}
           />
 
-          <CopyButton value="https://mantine.dev">
-            {({ copied, copy }) => (
-              <Button
-                color={isLoading ? "gray" : copied ? "teal" : "blue"}
-                size="xl"
-                className={classes.control}
-                variant="gradient"
-                gradient={{ from: "blue", to: "cyan" }}
-                onClick={() => updateGoly(data)}
-                disabled={isLoading}
-                rightIcon={isLoading && <Loader />}
-              >
-                {isLoading
-                  ? "Generating"
-                  : copied
-                  ? "Copied url"
-                  : "Copy babylink"}
-              </Button>
-            )}
-          </CopyButton>
-          {(data.redirect = name)}
+          <Button
+            color="blue"
+            size="xl"
+            className={classes.control}
+            variant="gradient"
+            gradient={{ from: "blue", to: "cyan" }}
+            onClick={() => updateGoly(name)}
+            disabled={isLoading}
+            rightIcon={isLoading && <Loader />}
+          >
+            {isLoading ? "Generating" : "Copy babylink"}
+          </Button>
         </Group>
       </Container>
       <FooterSocial />
