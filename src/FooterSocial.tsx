@@ -39,7 +39,7 @@ export function FooterSocial() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        Made with ❤️ by harshit
+        Made with ❤️ by arya
         <Group spacing={0} className={classes.links} position="right" noWrap>
           <a href="https://twitter.com/">
             <ActionIcon size="lg">
@@ -51,12 +51,12 @@ export function FooterSocial() {
               <IconBrandYoutube size={18} stroke={1.5} />
             </ActionIcon>
           </a>
-          <a href="https://github.com/">
+          <a href="https://github.com/aryabyte21">
             <ActionIcon size="lg">
               <IconBrandGithub size={18} stroke={1.5} />
             </ActionIcon>
           </a>
-          <a href="https://vercel.app/">
+          <a href="https://aryafolio.vercel.app/">
             <ActionIcon size="lg">
               <IconAt size={18} stroke={1.5} />
             </ActionIcon>
