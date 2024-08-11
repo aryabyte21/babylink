@@ -89,7 +89,7 @@ export function HeroTitle() {
 
     try {
       const res = await fetch(
-        "https://ep0glga6tc.execute-api.us-west-2.amazonaws.com/",
+        "https://9f6ajufotj.execute-api.ap-south-1.amazonaws.com/",
         {
           method: "POST",
           headers: { "Content-Type": "text/plain" },
@@ -102,7 +102,7 @@ export function HeroTitle() {
       }
 
       const json = await res.json();
-      const generatedLink = `https://ep0glga6tc.execute-api.us-west-2.amazonaws.com/${json.short_code}`;
+      const generatedLink = `https://9f6ajufotj.execute-api.ap-south-1.amazonaws.com/${json.short_code}`;
 
       navigator.clipboard.writeText(generatedLink).then(() => {
         toast.success("Link copied to clipboard!");
