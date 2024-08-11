@@ -89,7 +89,7 @@ export function HeroTitle() {
 
     try {
       const res = await fetch(
-        "https://9f6ajufotj.execute-api.ap-south-1.amazonaws.com/",
+        "https://babylink.lol",
         {
           method: "POST",
           headers: { "Content-Type": "text/plain" },
@@ -102,7 +102,7 @@ export function HeroTitle() {
       }
 
       const json = await res.json();
-      const generatedLink = `https://9f6ajufotj.execute-api.ap-south-1.amazonaws.com/${json.short_code}`;
+      const generatedLink = `https://babylink.lol/${json.short_code}`;
 
       navigator.clipboard.writeText(generatedLink).then(() => {
         toast.success("Link copied to clipboard!");
