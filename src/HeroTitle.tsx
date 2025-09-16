@@ -102,7 +102,7 @@ export function HeroTitle() {
       }
 
       const json = await res.json();
-      const generatedLink = `https://dozikq20q4.execute-api.us-west-2.amazonaws.com/${json.sh3ort_code}`;
+      const generatedLink = `https://dozikq20q4.execute-api.us-west-2.amazonaws.com/${json.short_code}`;
 
       navigator.clipboard.writeText(generatedLink).then(() => {
         toast.success("Link copied to clipboard!");
